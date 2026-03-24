@@ -1,0 +1,316 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    overflow-x: hidden;
+    min-height: 100vh;
+    cursor: none;
+}
+
+/* 动态背景 */
+#background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    transition: background 2s ease;
+}
+
+/* 小幽灵鼠标 */
+#ghost-cursor {
+    position: fixed;
+    font-size: 24px;
+    pointer-events: none;
+    z-index: 9999;
+    transition: transform 0.1s ease;
+    filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.8));
+}
+
+/* 下雨容器 */
+#rain-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1000;
+}
+
+.rain-drop {
+    position: absolute;
+    font-size: 20px;
+    animation: fall linear forwards;
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(100vh) rotate(360deg);
+    }
+}
+
+/* 泡泡和星光 */
+.bubble {
+    position: absolute;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.2));
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    animation: pop 0.5s ease-out forwards;
+    pointer-events: none;
+}
+
+.star {
+    position: absolute;
+    font-size: 16px;
+    animation: sparkle 1s ease-out forwards;
+    pointer-events: none;
+}
+
+@keyframes pop {
+    0% { transform: scale(0); opacity: 1; }
+    100% { transform: scale(1.5); opacity: 0; }
+}
+
+@keyframes sparkle {
+    0% { transform: scale(0) rotate(0deg); opacity: 1; }
+    100% { transform: scale(1.5) rotate(180deg); opacity: 0; }
+}
+
+/* 屏幕宠物 */
+.pet {
+    position: fixed;
+    font-size: 48px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 2000;
+    user-select: none;
+}
+
+.pet-thought {
+    position: fixed;
+    background: white;
+    padding: 8px 12px;
+    border-radius: 12px;
+    font-size: 14px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    z-index: 2001;
+    display: none;
+}
+
+/* 主容器 */
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    position: relative;
+    z-index: 100;
+}
+
+h1 {
+    text-align: center;
+    font-size: 3em;
+    margin-bottom: 40px;
+    color: white;
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+}
+
+/* 卡片样式 */
+.card {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 20px;
+    padding: 30px;
+    margin-bottom: 30px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(10px);
+}
+
+.card h2 {
+    color: #333;
+    margin-bottom: 15px;
+    font-size: 1.5em;
+}
+
+.card p {
+    color: #666;
+    margin-bottom: 20px;
+}
+
+/* 输入框和按钮 */
+input[type="text"] {
+    width: 100%;
+    padding: 12px 20px;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    font-size: 16px;
+    margin-bottom: 15px;
+    transition: border-color 0.3s;
+}
+
+input[type="text"]:focus {
+    outline: none;
+    border-color: #667eea;
+}
+
+button {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+}
+
+button:active {
+    transform: translateY(0);
+}
+
+/* 燃烧纸张效果 */
+#burning-paper {
+    margin-top: 15px;
+    min-height: 50px;
+}
+
+.burning-text {
+    animation: burn 2s ease-out forwards;
+    color: #ff6b6b;
+    font-size: 18px;
+}
+
+@keyframes burn {
+    0% { opacity: 1; transform: scale(1); filter: blur(0); }
+    100% { opacity: 0; transform: scale(1.5) translateY(-20px); filter: blur(10px); }
+}
+
+/* 真心话结果 */
+.truth-box {
+    margin-top: 15px;
+    padding: 20px;
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    color: white;
+    border-radius: 10px;
+    font-size: 18px;
+    min-height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+/* 跳舞文字 */
+#dance-container {
+    margin-top: 15px;
+    min-height: 100px;
+    position: relative;
+}
+
+.dancing-letter {
+    position: absolute;
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+    user-select: none;
+    transition: transform 0.1s;
+}
+
+/* 反重力方块 */
+#gravity-container {
+    height: 300px;
+    border: 2px dashed #ddd;
+    border-radius: 10px;
+    position: relative;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.5);
+}
+
+.float-box {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+    cursor: grab;
+    user-select: none;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    transition: box-shadow 0.2s;
+}
+
+.float-box:active {
+    cursor: grabbing;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+}
+
+/* 彩蛋提示 */
+.secret-hint {
+    text-align: center;
+    background: rgba(255, 255, 255, 0.8);
+}
+
+.secret-hint kbd {
+    background: #333;
+    color: white;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-family: monospace;
+}
+
+/* 隐藏彩蛋面板 */
+.secret-panel {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    z-index: 10000;
+    text-align: center;
+    max-width: 500px;
+}
+
+.secret-panel h2 {
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+
+.secret-content {
+    margin: 20px 0;
+    line-height: 1.8;
+}
+
+.secret-panel button {
+    background: white;
+    color: #667eea;
+    margin-top: 20px;
+}
+
+/* 时间背景色 */
+.morning { background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); }
+.noon { background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); }
+.evening { background: linear-gradient(135deg, #fa709a 0%, #fee140 100%); }
+.night { background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); }
+
+/* 响应式 */
+@media (max-width: 600px) {
+    h1 { font-size: 2em; }
+    .card { padding: 20px; }
+}

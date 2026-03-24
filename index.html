@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>✨ 奇妙互动世界 ✨</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- 动态背景 -->
+    <div id="background"></div>
+    
+    <!-- 小幽灵鼠标跟随 -->
+    <div id="ghost-cursor">👻</div>
+    
+    <!-- 下雨效果容器 -->
+    <div id="rain-container"></div>
+    
+    <!-- 泡泡和星光容器 -->
+    <div id="effects-container"></div>
+    
+    <!-- 屏幕宠物 -->
+    <div id="pet" class="pet">🐱</div>
+    <div id="pet-thought" class="pet-thought"></div>
+    
+    <!-- 主界面 -->
+    <div class="container">
+        <h1 class="dancing-text">🌰 奇妙互动世界</h1>
+        
+        <!-- 情绪垃圾桶 -->
+        <div class="card">
+            <h2>🗑️ 情绪垃圾桶</h2>
+            <p>写下你的烦恼，然后烧掉它！</p>
+            <input type="text" id="worry-input" placeholder="输入你的烦恼...">
+            <button onclick="burnWorry()">🔥 烧掉烦恼</button>
+            <div id="burning-paper"></div>
+        </div>
+        
+        <!-- 真心话生成器 -->
+        <div class="card">
+            <h2>🎲 离谱真心话生成器</h2>
+            <p>点击生成阴间问题</p>
+            <button onclick="generateTruth()">🎰 生成问题</button>
+            <div id="truth-result" class="truth-box"></div>
+        </div>
+        
+        <!-- 跳舞文字输入 -->
+        <div class="card">
+            <h2>💃 跳舞文字</h2>
+            <p>输入文字看它跳舞躲鼠标</p>
+            <input type="text" id="dance-input" placeholder="输入文字..." oninput="createDancingText(this.value)">
+            <div id="dance-container"></div>
+        </div>
+        
+        <!-- 反重力区域 -->
+        <div class="card">
+            <h2>🌌 反重力实验室</h2>
+            <p>拖动这些方块，看它们飘起来！</p>
+            <div id="gravity-container">
+                <div class="float-box" style="background: #ff6b6b;">拖我</div>
+                <div class="float-box" style="background: #4ecdc4;">拖我</div>
+                <div class="float-box" style="background: #ffe66d;">拖我</div>
+                <div class="float-box" style="background: #95e1d3;">拖我</div>
+            </div>
+        </div>
+        
+        <!-- 彩蛋提示 -->
+        <div class="card secret-hint">
+            <p>🤫 提示：试试按 <kbd>C</kbd> + <kbd>T</kbd> + <kbd>L</kbd></p>
+        </div>
+    </div>
+    
+    <!-- 隐藏彩蛋界面 -->
+    <div id="secret-panel" class="secret-panel">
+        <h2>🎉 恭喜解锁彩蛋！</h2>
+        <p>你发现了隐藏世界！</p>
+        <div class="secret-content">
+            <p>🌟 开发者留言：谢谢你探索到这里！</p>
+            <p>💡 小提示：双击宠物会有惊喜哦~</p>
+        </div>
+        <button onclick="closeSecret()">关闭</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
