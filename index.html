@@ -64,6 +64,20 @@
             </div>
         </div>
         
+        <!-- 创意游戏工具 -->
+        <div class="card">
+            <h2>🎮 创意乐园</h2>
+            <p>点击选择想玩的游戏和工具</p>
+            <button onclick="openGameSelector()">🎯 打开游戏库</button>
+            <div id="game-selector" class="game-selector">
+                <div class="game-grid" id="game-grid"></div>
+            </div>
+            <div id="game-frame-container" class="game-frame-container">
+                <iframe id="game-frame" class="game-frame" src=""></iframe>
+                <button onclick="closeGame()" class="close-game-btn">❌ 关闭游戏</button>
+            </div>
+        </div>
+        
         <!-- 彩蛋提示 -->
         <div class="card secret-hint">
             <p>🤫 提示：试试按 <kbd>C</kbd> + <kbd>T</kbd> + <kbd>L</kbd></p>

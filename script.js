@@ -9,6 +9,14 @@ let keysPressed = {};
 const rainEmojis = ['🍬', '⭐', '🐙', '🎈', '🌸', '💖', '🦄', '🍭', '✨', '🎵'];
 const petEmojis = ['🐱', '🐶', '🐰', '🦊', '🐼'];
 const petThoughts = ['好无聊...', '求摸摸~', '饿了！', '困了...', '嘿嘿~', '发呆了'];
+
+// 游戏和工具列表（从 D 盘加载）
+const gamesAndTools = [
+    { name: '自动画', icon: '🎨', file: 'D:/新建文件夹/自动画.html' },
+    { name: '漫画图', icon: '🖼️', file: 'D:/新建文件夹/漫画图.html' },
+    { name: '贪吃蛇', icon: '🐍', file: 'D:/新建文件夹/贪吃蛇.html' }
+];
+
 const truthQuestions = [
     '你上次偷偷哭是什么时候？',
     '如果你能隐身一小时，你会做什么？',
@@ -440,4 +448,78 @@ function showSecret() {
 
 function closeSecret() {
     document.getElementById('secret-panel').style.display = 'none';
+}
+
+// ==================== 创意游戏工具选择器 ====================
+function openGameSelector() {
+    const selector = document.getElementById('game-selector');
+    const grid = document.getElementById('game-grid');
+    
+    // 如果已经打开，先关闭
+    if (selector.classList.contains('active')) {
+        selector.classList.remove('active');
+        return;
+    }
+    
+    // 清空并重新生成游戏列表
+    grid.innerHTML = '';
+    
+    gamesAndTools.forEach((game, index) => {
+        const item = document.createElement('div');
+        item.className = 'game-item';
+        item.innerHTML = `
+            <div class="game-icon">${game.icon}</div>
+            <div class="game-name">${game.name}</div>
+        `;
+        item.onclick = () => loadGame(index);
+        grid.appendChild(item);
+    });
+    
+    selector.classList.add('active');
+    
+    // 撒花庆祝
+    for (let i = 0; i < 15; i++) {
+        setTimeout(() => {
+            createStar(window.innerWidth / 2, window.innerHeight / 2);
+        }, i * 50);
+    }
+}
+
+function loadGame(index) {
+    const game = gamesAndTools[index];
+    const frameContainer = document.getElementById('game-frame-container');
+    const frame = document.getElementById('game-frame');
+    
+    // 加载游戏
+    frame.src = game.file;
+    frameContainer.classList.add('active');
+    
+    // 关闭选择器
+    document.getElementById('game-selector').classList.remove('active');
+    
+    // 滚动到游戏区域
+    frameContainer.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    
+    // 庆祝效果
+    for (let i = 0; i < 30; i++) {
+        setTimeout(() => {
+            createStar(window.innerWidth / 2, window.innerHeight / 3);
+        }, i * 30);
+    }
+}
+
+function closeGame() {
+    const frameContainer = document.getElementById('game-frame-container');
+    const frame = document.getElementById('game-frame');
+    
+    // 关闭游戏
+    frame.src = '';
+    frameContainer.classList.remove('active');
+    
+    // 庆祝效果
+    for (let i = 0; i < 20; i++) {
+        setTimeout(() => {
+            createRainDrop();
+        }, i * 50);
+    }
 }
